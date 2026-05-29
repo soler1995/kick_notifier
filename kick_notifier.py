@@ -23,7 +23,7 @@ def enviar_telegram(mensaje):
 def main():
     print(f"👀 Monitoreando a {STREAMER} en Kick...")
     estaba_en_vivo = esta_en_vivo(STREAMER)  # estado inicial
-
+    print(f"Estado actual: {'EN VIVO' if en_vivo else 'offline'}")
     while True:
         time.sleep(INTERVALO_SEG)
         en_vivo = esta_en_vivo(STREAMER)
