@@ -12,7 +12,7 @@ def esta_en_vivo(streamer):
     try:
         url = f"https://kick.com/api/v1/channels/{streamer}"
         r = requests.get(url, timeout=10).json()
-        return r.get("livestream") is not None
+        return r.get("is_live", False)
     except:
         return False
 
