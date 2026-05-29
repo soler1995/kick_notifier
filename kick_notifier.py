@@ -2,10 +2,10 @@ import requests
 import time
 
 # ── Configuración ──────────────────────────────────────────
-STREAMER      = "forg1"   # usuario en Kick
+STREAMER      = "forg1"
 BOT_TOKEN     = "8783397085:AAFdV_i9fRZeaCWr9lPQiHZMEttoczSgam8"
 CHAT_ID       = "5659754687"
-INTERVALO_SEG = 60                      # chequea cada 60 segundos
+INTERVALO_SEG = 60
 # ───────────────────────────────────────────────────────────
 
 def esta_en_vivo(streamer):
@@ -22,11 +22,13 @@ def enviar_telegram(mensaje):
 
 def main():
     print(f"👀 Monitoreando a {STREAMER} en Kick...")
-    estaba_en_vivo = esta_en_vivo(STREAMER)  # estado inicial
-    print(f"Estado actual: {'EN VIVO' if en_vivo else 'offline'}")
+    estaba_en_vivo = esta_en_vivo(STREAMER)
+    print(f"Estado inicial: {'EN VIVO' if estaba_en_vivo else 'offline'}")  # ← fix
+
     while True:
         time.sleep(INTERVALO_SEG)
         en_vivo = esta_en_vivo(STREAMER)
+        print(f"Estado actual: {'EN VIVO' if en_vivo else 'offline'}")  # ← fix
 
         if en_vivo and not estaba_en_vivo:
             enviar_telegram(f"🔴 ¡{STREAMER} acaba de prender stream en Kick!\nhttps://kick.com/{STREAMER}")
